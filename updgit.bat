@@ -9,7 +9,7 @@ ECHO %comment%
  
 rem git checkout main
 git status
-git add .
+git add *
                   
 git commit -m "%comment%"
 git push
