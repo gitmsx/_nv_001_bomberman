@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class MovementGrid001 : MonoBehaviour
 {
 
-    public float speed = 1; 
+    public float speed = 10; 
     private Rigidbody rb;
 
 
@@ -18,11 +19,16 @@ public class MovementGrid001 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 mov = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical")) * speed; mov = Vector3.ClampMagnitude(mov, speed);
+        float Horizontalf = Input.GetAxis("Horizontal");
+        float Verticalf = Input.GetAxis("Vertical");
+        Vector3 mov = new Vector3(Horizontalf, 0f, Verticalf) * speed; 
+        mov = Vector3.ClampMagnitude(mov, speed);
         
         if (mov != Vector3.zero)
         {
-            rb.MovePosition(transform.position + mov * Time.deltaTime); rb.MoveRotation(Quaternion.LookRotation(mov));
+            rb.MoveRotation(Quaternion.LookRotation(mov));
+            rb.MovePosition(transform.position + mov * Time.deltaTime);
+         
         }
     }
 
